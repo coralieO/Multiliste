@@ -15,7 +15,7 @@ class LocalityController extends Controller
      */
     public function index()
     {
-        return Inertia::render('index', [
+        return Inertia::render('locality', [
             "index" => Locality::all()
         ]);
     }

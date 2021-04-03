@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //l'ensemble des localités
-Route::get('/localites', [App\Http\Controllers\LocalityController::class, "index"])->name('localites');
+Route::get('/localites', [App\Http\Controllers\MultilisteController::class, "index"])->name('localites');
 
 //renvoi une localité et ses enfants
 Route::get('/localites/{id}', [App\Http\Controllers\MultilisteController::class, "localites_enfants"])->name('localites.localites_enfants');

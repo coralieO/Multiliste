@@ -13,10 +13,16 @@ class MultilisteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return response()->json(Multiliste::all());
+    public function index(){
+        // $localite = Multiliste::all();
+
+        // return view('index', compact('localite'));
+        return Multiliste::all();
+
     }
+    // {
+    //     return response()->json(Multiliste::all());
+    // }
 
     /**
      * Show the form for creating a new resource.

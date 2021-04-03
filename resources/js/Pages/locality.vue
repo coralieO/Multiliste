@@ -37,15 +37,18 @@ export default {
 
     data(){
         return{
-            index: null
+            index: {}
         }
     },
 
     mounted () {
 
       axios.get('http://127.0.0.1:8000/api/localites')
-      .then(response=> (this.index = response.data.data))
-      console.log(response.data.data)
+      .then((response)=>{
+          this.index=response.data.data;
+          console.warn(response.data.data)
+          })
+
   }
     //  Vue.component('index', {
     //  // camelCase en JavaScript
