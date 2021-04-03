@@ -17,7 +17,18 @@ class MultilisteController extends Controller
         // $localite = Multiliste::all();
 
         // return view('index', compact('localite'));
-        return Multiliste::all();
+
+        return Inertia::render('locality', [
+            "multiliste" => Multiliste::all()
+        ]);
+        // return Multiliste::all();
+
+    }
+    public function locality(){
+        // $localite = Multiliste::all();
+
+        // return view('index', compact('localite'));
+        // return Inertia::render('locality');
 
     }
     // {

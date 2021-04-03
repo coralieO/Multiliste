@@ -18,15 +18,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//l'ensemble des localités
-Route::get('/localites', [App\Http\Controllers\MultilisteController::class, "index"])->name('localites');
+// //l'ensemble des localités
+// Route::get('/localites', [App\Http\Controllers\MultilisteController::class, "index"])->name('localites');
 
-//renvoi une localité et ses enfants
-Route::get('/localites/{id}', [App\Http\Controllers\MultilisteController::class, "localites_enfants"])->name('localites.localites_enfants');
+// //renvoi une localité et ses enfants
+// Route::get('/localites/{id}', [App\Http\Controllers\MultilisteController::class, "localites_enfants"])->name('localites.localites_enfants');
 
-Route::get('/localites/{id}/edit', [App\Http\Controllers\MultilisteController::class, "edit"])->name('localites.edit');
-Route::delete('/localites/{id}', [App\Http\Controllers\MultilisteController::class, "delete"])->name('localites.delete');
-Route::put('/localites/{id}', [App\Http\Controllers\MultilisteController::class, "update"])->name('localites.update');
+
+Route::get('/localites', function(Request $request) {
+    $fields = $request->get('fields') ? explode('_',$request->get('fields')) :'*';
+    return \App\Models\Multiliste::select($fields)->get();
+});
+
+
+Route::get('/localites/{multilisteId}', function ($localitesId) {
+    return \App\Models\Multiliste::find($localitesId);
+});
+
+// Route::get('/localites/{id}/edit', [App\Http\Controllers\MultilisteController::class, "edit"])->name('localites.edit');
+// Route::delete('/localites/{id}', [App\Http\Controllers\MultilisteController::class, "delete"])->name('localites.delete');
+// Route::put('/localites/{id}', [App\Http\Controllers\MultilisteController::class, "update"])->name('localites.update');
 
 // Route::get('/clients/create', [App\Http\Controllers\ClientsController::class, "create"])->name('clients.create');
 // Route::post('/clients', [App\Http\Controllers\ClientsController::class, "store"])->name('clients.store');

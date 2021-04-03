@@ -1,11 +1,11 @@
 <template>
 <div class="app" id="app">
 <div class="nav">
-        <div class="multi-level">
+        <div class="multi-level"  v-for="multiliste in multilistes" :key="multiliste.id">
 
-            <div class="item" >
+            <div class="item">
                 <input type="checkbox" id="B"/>
-                <img src="" class="arrow"><label for="B" v-for="item in index" v-bind:key="item.id">{{item.label}}</label>
+                <img src="" class="arrow"><label for="B" >{{multiliste.label}}</label>
 
 
                 <ul>
@@ -32,24 +32,41 @@
 <script>
 
 import axios from 'axios'
-
 export default {
+        data(){
+            return{
+                multilistes: [],
 
-    data(){
-        return{
-            index: {}
-        }
+            }
+        },
+
+        methods: {
+            loadPosts() {
+                axios.get('./api/localites')
+                .then(response => this.multilistes = response.data);
+            },
+
+
     },
+ created(){
+            this.loadPosts();
+        }
 
-    mounted () {
+//     data(){
+//         return{
+//             index: {}
+//         }
+//     },
 
-      axios.get('http://127.0.0.1:8000/api/localites')
-      .then((response)=>{
-          this.index=response.data.data;
-          console.warn(response.data.data)
-          })
+//     mounted () {
 
-  }
+//       axios.get('http://127.0.0.1:8000/api/localites')
+//       .then((response)=>{
+//           this.index=response.data.data;
+//           console.warn(response.data.data)
+//           })
+
+//   }
     //  Vue.component('index', {
     //  // camelCase en JavaScript
 
@@ -67,9 +84,6 @@ export default {
 
 /*Func*/
 
-.multi-level, .item ul, .nav input[type="checkbox"] {
-    display: none;
-}
 
 
 /*Arrow*/
@@ -143,3 +157,4 @@ label {
 }
 
 </style>
+

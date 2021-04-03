@@ -28,3 +28,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
 
+
+
+ Route::get('/localites', [App\Http\Controllers\MultilisteController::class, "index"])->name('localites');
