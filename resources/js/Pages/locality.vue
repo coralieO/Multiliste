@@ -83,7 +83,9 @@ export default {
 
 
 /*Func*/
-
+.multi-level, .item ul, .nav input[type="checkbox"] {
+    display: none;
+}
 
 
 /*Arrow*/
